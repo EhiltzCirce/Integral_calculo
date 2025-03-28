@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Integral by Karen</title>
+    </head>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        html {
+            background-image: linear-gradient(120deg, #c7edff 0%, #abe2ff 100%);
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 100%;
+        }
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin: 10px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 5rem;
+            color: #000;
+        }
+        h3 {
+            text-align: center;
+            margin-top: 8pc;
+        }
+        .integral_a_calcular {
+            width: 600px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+            font-weight: bold;
+            color: #000;
+            padding: 10px;
+            margin: auto;
+        }
+        .integral_result {
+            width: 600px;
+            height: 0;
+            border-top: solid 2px;
+            box-shadow: 0 40px 0px 90px rgba(35, 119, 228, 0.519);
+            position: relative;
+            top: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+            font-weight: bold;
+            color: #000;
+            margin: auto;
+        }
+        #Coeficiente,
+        #Coeficiente_result {
+            position: absolute;
+            top: 10px;
+            left: 265px;
+        }
+        #x_xd {
+            position: absolute;
+            top: 10px;
+            left: 310px;
+        }
+        .exponente {
+            position: absolute;
+            top: 30px;
+            left: 320px;
+            font-size: 10px;
+        }
+        .denominador {
+            position: absolute;
+            top: 50px;
+            left: 260px;
+            border-top: solid 2px;
+            width: 90px;
+            text-align: center;
+        }
+        #Constante {
+            position: absolute;
+            top: 30px;
+            left: 350px;
+        }
+
+        .integral-form {
+            display: flex;
+            justify-content: center;
+            align-items: start;
+            flex-direction: column;
+            margin: 10px;
+        }
+        .Calcular {
+            margin-top: 5px;
+            padding: 10px;
+            border-radius: 10px;
+            background-color: #000;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        footer {
+            position: absolute;
+            bottom: 0;
+            width: 99%;
+            text-align: center;
+            background-color: #ffffff;
+            color: #000000;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        input {
+            padding: 10px;
+            border-radius: 10px;
+            border: none;
+            margin: 5px;
+        }
+    </style>
+    <body>
+        <main>
+            <h1>Integral</h1>
+            <p>Integración de una función</p>
+            <p style="font-weight: 600; font-size: 20px">
+                ∫ Kx<b style="font-size: 10px; top: -10px; position: relative">n</b> dx
+            </p>
+
+            <section class="integral-form">
+                <label for="Coeficiente">Coeficiente</label>
+                <input type="number" id="Coeficiente_input" />
+                <label for="Denominador">Exponente</label>
+                <input type="number" id="Exponente_input" />
+                <button class="Calcular" onclick="calcular()">Calcular</button>
+            </section>
+        </main>
+        <section class="integral_a_calcular">
+            <p id="Coeficiente">K</p>
+            <p id="x_xd">x</p>
+            <p class="exponente"><b id="exponente">n</b> + 1</p>
+            <p class="denominador"><b id="denominador">n</b> + 1</p>
+            <p id="Constante">+ C</p>
+        </section>
+        <h3>Resultado</h3>
+        <section class="integral_result">
+            <p id="Coeficiente_result">K</p>
+            <p id="x_xd">x</p>
+            <p class="exponente"><b id="exponente_result">n</b></p>
+            <p class="denominador"><b id="denominador_result">n</b></p>
+            <p id="Constante">+ C</p>
+        </section>
+        <footer>
+            <p>Desarrollado por Karen</p>
+        </footer>
+    </body>
+
+    <script>
+        const pden = document.getElementsByClassName('denominador')
+        const Coeficiente = document.getElementById('Coeficiente')
+        const Exponente = document.getElementById('exponente')
+        const Denominador = document.getElementById('denominador')
+        function calcular() {
+            denominador_result.style.display = 'flex'
+            pden[1].style.display = 'flex'
+            let k = document.getElementById('Coeficiente_input').value
+            let n = document.getElementById('Exponente_input').value
+
+            Coeficiente.textContent = k
+            Exponente.textContent = n
+            Denominador.textContent = n
+
+            var n_sus = n++ + 1
+            console.log(n + 'ptm')
+            if (k % n_sus == 0) {
+                let exponente_result = document.getElementById('exponente_result')
+                let denominador_result = document.getElementById('denominador_result')
+                let Coeficiente_result = document.getElementById('Coeficiente_result')
+                var New_coeficiente = k / n_sus
+                console.log(n_sus)
+                console.log(New_coeficiente)
+                Coeficiente_result.textContent = New_coeficiente
+                exponente_result.textContent = n++
+                denominador_result.style.display = 'none'
+                pden[1].style.display = 'none'
+            } else {
+                let exponente_result = document.getElementById('exponente_result')
+                let denominador_result = document.getElementById('denominador_result')
+                let Coeficiente_result = document.getElementById('Coeficiente_result')
+
+                Coeficiente_result.textContent = k
+                console.log(n + 'ptm')
+                exponente_result.textContent = n
+                console.log(n + 'ptm')
+                denominador_result.textContent = n
+            }
+        }
+    </script>
+</html>
